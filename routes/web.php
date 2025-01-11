@@ -52,6 +52,10 @@ Route::put('/blogs/{id}', [BlogsController::class, 'update'])->name('blogs.updat
 Route::delete('/blogs/{id}', [BlogsController::class, 'destroy'])->name('blogs.destroy');
 
 
+Route::get('/blog/{id}', [FrontendController::class, 'blogDetails'])->name('blog.details');
+
+
+
 
 
 Route::get('/', [FrontendController::class, 'home'])->name('home');
