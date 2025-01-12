@@ -11,7 +11,8 @@ class FrontendController extends Controller
 
     public function home()
     {
-        $categories = Category::all();
+        // $categories = Category::all();
+        $categories =  Category::where('feature_in_home', true)->get();
         return view('frontend.home', compact('categories'));
     }
 

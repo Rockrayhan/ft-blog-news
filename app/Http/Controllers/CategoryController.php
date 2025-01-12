@@ -33,6 +33,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name|max:255',
+            'feature_in_home' => 'boolean',
         ]);
     
         Category::create($request->all());
@@ -68,13 +69,14 @@ class CategoryController extends Controller
 
         $request->validate([
             'name' => 'required|max:255',
+            'feature_in_home' => 'boolean',
+
         ]);
 
         $category->update([
             'name' => $request->name,
+            'feature_in_home' => $request->feature_in_home, 
         ]);
-
-    
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
     }
     

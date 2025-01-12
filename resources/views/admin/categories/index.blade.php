@@ -8,6 +8,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Featured in Home</th> <!-- New column -->
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,6 +17,10 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $category->name }}</td>
+                <td>
+                    <!-- Display "Yes" or "No" based on the feature_in_home value -->
+                    {{ $category->feature_in_home ? 'Yes' : 'No' }}
+                </td>
                 <td>
                     <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
