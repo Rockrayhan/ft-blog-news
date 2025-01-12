@@ -1,11 +1,21 @@
 <div class="container">
     <h2>Edit Blog</h2>
-    <form action="{{ route('blogs.update', $blog->id) }}" method="POST">
+    <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $blog->title) }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" name="image" id="image" class="form-control">
+            @if ($blog->image)
+                <div class="mt-2">
+                    <img src="{{ asset('uploads/' . $blog->image) }}" alt="Blog Image" width="150">
+                    <p class="text-muted">Current image</p>
+                </div>
+            @endif
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
@@ -30,4 +40,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
+    
 </div>

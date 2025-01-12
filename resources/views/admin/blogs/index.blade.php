@@ -1,10 +1,29 @@
 <div class="container">
+
+    
+@if (session('success'))
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+
+
     <a href="{{ route('blogs.create') }}" class="btn btn-primary mb-3">Add Blog</a>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Title</th>
+                <th>Image</th>
                 <th>Category</th>
                 <th>Author</th>
                 <th>Tags</th>
@@ -15,6 +34,7 @@
             @foreach ($blogs as $blog)
             <tr>
                 <td>{{ $loop->iteration }}</td>
+                <td><img src="{{ asset('uploads/' . $blog->image) }}" alt="Blog Image" height="100" width="100"></td>
                 <td>{{ $blog->title }}</td>
                 <td>{{ $blog->category->name ?? 'No Category' }}</td>
                 <td>{{ $blog->author }}</td>

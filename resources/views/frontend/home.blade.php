@@ -32,17 +32,6 @@
                 </button>
             </div>
         </div>
-
-        <div>
-            <h1> All Categories </h1>
-            @foreach ($categories as $category)
-                <li><a href="{{ route('category.posts', $category->id) }}">{{ $category->name }}</a></li>
-            @endforeach
-        </div>
-
-        <div>
-            <h2> </h2>
-        </div>
     </div>
 
     <!-- Feature post -->
@@ -162,7 +151,7 @@
                             <div class="p-b-20">
                                 {{-- Category Section --}}
                                 <div class="tab01 p-b-20">
-                                    <h1>{{ $category->name }}</h1>
+                                    <h1> {{ $category->name }}</h1>
                     
                                     <!-- Tab panes -->
                                     <div class="tab-content p-t-35">
@@ -174,7 +163,7 @@
                                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                                         <div class="m-b-30">
                                                             <a href="{{ route('blog.details', $highlightedBlog->id) }}" class="wrap-pic-w hov1 trans-03">
-                                                                <img src="{{ $highlightedBlog->image ?? 'images/default.jpg' }}" alt="{{ $highlightedBlog->title }}">
+                                                                <img src="{{ asset('uploads/' . $highlightedBlog->image) }}" alt="{{ $highlightedBlog->title }}">
                                                             </a>
                     
                                                             <div class="p-t-20">
@@ -207,7 +196,7 @@
                                                     @foreach ($category->blogs->skip(1)->take(3) as $blog)
                                                         <div class="flex-wr-sb-s m-b-30">
                                                             <a href="{{ route('blog.details', $blog->id) }}" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                                <img src="{{ $blog->image ?? 'images/default.jpg' }}" alt="{{ $blog->title }}">
+                                                                <img src="{{ asset('uploads/' . $blog->image) }}" alt="{{ $blog->title }}">
                                                             </a>
                     
                                                             <div class="size-w-2">

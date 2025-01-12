@@ -16,14 +16,14 @@ class FrontendController extends Controller
     }
 
 
-    public function category(string $id)
+    public function categoryDetails(string $id)
     {
         $category = Category::find($id);
         // Get all posts related to the given category
         $blogs = Blog::where('category_id', $category->id)->get();
 
         // Return the view with the blogs for this category
-        return view('frontend.category', compact('blogs', 'category'));
+        return view('frontend.category-details', compact('blogs', 'category'));
     }
 
     
@@ -31,6 +31,6 @@ class FrontendController extends Controller
     public function blogDetails($id)
     {
         $blog = Blog::findOrFail($id); // Find the blog or throw a 404 error
-        return view('frontend.blog-detail', compact('blog')); // Return a view for the blog details
+        return view('frontend.blog-details', compact('blog')); // Return a view for the blog details
     }
 }

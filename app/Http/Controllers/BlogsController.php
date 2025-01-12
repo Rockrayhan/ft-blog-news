@@ -31,19 +31,34 @@ class BlogsController extends Controller
             'category_id' => 'nullable|exists:categories,id',
             'author' => 'required|max:255',
             'tags' => 'nullable|max:255',
+            'image' => 'nullable|mimes:jpg,jpeg,png,gif,webp,JPG,JPEG,PNG,GIF,WEBP|max:2048', // Allow uppercase extensions
         ]);
-
-        Blog::create([
+    
+        $filename = null;
+    
+        if ($request->hasFile('image')) {
+            $extension = strtolower($request->image->extension()); // Normalize the extension
+            $filename = time() . '.' . $extension;
+            $request->image->move(public_path('uploads'), $filename);
+        }
+    
+        $data = [
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
             'author' => $request->author,
             'tags' => $request->tags,
-        ]);
-
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully.');
+            'image' => $filename,
+        ];
+    
+        $model = new Blog();
+        if ($model->create($data)) {
+            return redirect()->route('admin.blogs.index')->with('success', 'Blog uploaded successfully.');
+        }
+    
+        return redirect()->back()->with('error', 'Failed to upload the blog. Please try again.');
     }
-
+    
 
 
     public function edit($id)
@@ -54,29 +69,46 @@ class BlogsController extends Controller
     }
 
 
+
     public function update(Request $request, $id)
     {
         $blog = Blog::findOrFail($id);
-
+    
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'author' => 'required|max:255',
             'tags' => 'nullable|max:255',
+            'image' => 'nullable|mimes:jpg,jpeg,png,gif,webp,JPG,JPEG,PNG,GIF,WEBP|max:2048', // Optional image validation
         ]);
-
+    
+        $filename = $blog->image; // Retain the current image filename
+    
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($blog->image && file_exists(public_path('uploads/' . $blog->image))) {
+                unlink(public_path('uploads/' . $blog->image));
+            }
+    
+            // Upload the new image
+            $extension = strtolower($request->image->extension());
+            $filename = time() . '.' . $extension;
+            $request->image->move(public_path('uploads'), $filename);
+        }
+    
         $blog->update([
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
             'author' => $request->author,
             'tags' => $request->tags,
+            'image' => $filename, // Update image if a new one is uploaded
         ]);
-
+    
         return redirect()->route('admin.blogs.index')->with('success', 'Blog updated successfully.');
     }
-
+    
 
     public function destroy($id)
     {

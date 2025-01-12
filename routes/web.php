@@ -59,4 +59,4 @@ Route::get('/blog/{id}', [FrontendController::class, 'blogDetails'])->name('blog
 
 
 Route::get('/', [FrontendController::class, 'home'])->name('home');
-Route::get('/category/{category}', [FrontendController::class, 'category'])->name('category.posts');
+Route::get('/category/{category}', [FrontendController::class, 'categoryDetails'])->name('category.posts');

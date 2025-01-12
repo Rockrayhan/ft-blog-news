@@ -32,17 +32,6 @@
 		<h2 class="f1-l-1 cl2">
 			About Us
 		</h2>
-
-		<h3> All categories </h3>
-		<div class="container">
-			<h3>Categories</h3>
-			<ul>
-				@foreach ($categories as $category)
-					<li><a href="{{ route('category.posts', $category->id) }}">{{ $category->name }}</a></li>
-				@endforeach
-			</ul>
-		</div>
-		
 	</div>
 
 	<!-- Content -->
