@@ -1,6 +1,7 @@
-{{-- @extends('layouts.app') --}}
+@extends('admin.layouts.app')
+@section('title', 'Edit Blog')
+@section('content')
 
-{{-- @section('content') --}}
 <div class="container">
     <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Add Category</a>
     <table class="table table-bordered">
@@ -34,4 +35,8 @@
         </tbody>
     </table>
 </div>
-{{-- @endsection --}}
+
+@endsection
+
+
+

@@ -1,3 +1,11 @@
+
+
+
+
+@extends('admin.layouts.app')
+@section('title', 'Edit Blog')
+@section('content')
+
 <div class="container">
     <h2>Edit Blog</h2>
     <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
@@ -42,3 +50,4 @@
     </form>
     
 </div>
+@endsection

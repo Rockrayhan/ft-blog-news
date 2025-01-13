@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
@@ -33,23 +34,34 @@ Route::get('/contact', function () {
 });
 
 
+// admin routes
+Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+
+
+
+
 
 // categories
-Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
-Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-Route::post('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
-Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
+Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/admin/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/admin/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::post('/admin/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/admin/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
 // Blogs
-Route::get('/blogs', [BlogsController::class, 'index'])->name('admin.blogs.index');
-Route::get('/blogs/create', [BlogsController::class, 'create'])->name('blogs.create');
-Route::post('/blogs', [BlogsController::class, 'store'])->name('blogs.store');
-Route::get('/blogs/{id}/edit', [BlogsController::class, 'edit'])->name('blogs.edit');
-Route::post('/blogs/{id}', [BlogsController::class, 'update'])->name('blogs.update');
-Route::delete('/blogs/{id}', [BlogsController::class, 'destroy'])->name('blogs.destroy');
+Route::get('/admin/blogs', [BlogsController::class, 'index'])->name('admin.blogs.index');
+Route::get('/admin/blogs/create', [BlogsController::class, 'create'])->name('blogs.create');
+Route::post('/admin/blogs', [BlogsController::class, 'store'])->name('blogs.store');
+Route::get('/admin/blogs/{id}/edit', [BlogsController::class, 'edit'])->name('blogs.edit');
+Route::post('/admin/blogs/{id}', [BlogsController::class, 'update'])->name('blogs.update');
+Route::delete('/admin/blogs/{id}', [BlogsController::class, 'destroy'])->name('blogs.destroy');
 
 
 Route::get('/blog/{id}', [FrontendController::class, 'blogDetails'])->name('blog.details');

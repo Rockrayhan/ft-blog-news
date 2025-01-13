@@ -1,3 +1,7 @@
+@extends('admin.layouts.app')
+@section('title', 'Create Blog')
+@section('content')
+
 <div class="container">
     <h2>Create Blog</h2>
 
@@ -52,3 +56,8 @@
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
+
+@endsection
+
+
+

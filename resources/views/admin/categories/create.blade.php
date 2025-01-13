@@ -1,6 +1,8 @@
-{{-- @extends('layouts.app') --}}
 
-{{-- @section('content') --}}
+@extends('admin.layouts.app')
+@section('title', 'Create Category')
+@section('content')
+
 <div class="container">
     <h2>Add Category</h2>
     <form action="{{route('categories.store')}}" method="POST">
@@ -28,4 +30,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-{{-- @endsection --}}
+
+@endsection
+
+

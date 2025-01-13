@@ -1,6 +1,8 @@
-{{-- @extends('layouts.app') --}}
 
-{{-- @section('content') --}}
+@extends('admin.layouts.app')
+@section('title', 'Edit Category')
+@section('content')
+
 <div class="container">
     <h2>Edit Category</h2>
     <form action="/categories/{{ $category->id }}" method="POST">
@@ -22,4 +24,8 @@
     </form>
 </div>
 
-{{-- @endsection --}}
+
+@endsection
+
+
+
