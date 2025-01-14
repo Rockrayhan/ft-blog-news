@@ -73,7 +73,7 @@
 						<!-- Blog Detail -->
 						<div class="p-b-70">
 							<div>
-                                {{$blog->content}}
+                                {!! $blog->content !!}
                             </div>
 
 							<!-- Tag -->

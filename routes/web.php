@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\TopbarBannerController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -64,11 +65,18 @@ Route::post('/admin/blogs/{id}', [BlogsController::class, 'update'])->name('blog
 Route::delete('/admin/blogs/{id}', [BlogsController::class, 'destroy'])->name('blogs.destroy');
 
 
-Route::get('/blog/{id}', [FrontendController::class, 'blogDetails'])->name('blog.details');
+// top bar banner
+Route::get('/admin/topbar-banner', [TopbarBannerController::class, 'index'])->name('topbar-banner.index');
+Route::get('/admin/topbar-banner/create', [TopbarBannerController::class, 'create'])->name('topbar-banner.create');
+Route::post('/admin/topbar-banner', [TopbarBannerController::class, 'store'])->name('topbar-banner.store');
+Route::get('/admin/topbar-banner/{id}/edit', [TopbarBannerController::class, 'edit'])->name('topbar-banner.edit');
+Route::post('/admin/topbar-banner/{id}', [TopbarBannerController::class, 'update'])->name('topbar-banner.update');
+Route::delete('/admin/topbar-banner/{id}', [TopbarBannerController::class, 'destroy'])->name('topbar-banner.destroy');
 
 
 
 
-
+// Frontend Routes
 Route::get('/', [FrontendController::class, 'home'])->name('home');
-Route::get('/category/{category}', [FrontendController::class, 'categoryDetails'])->name('category.posts');
+Route::get('/category/{category}', [FrontendController::class, 'categoryDetails'])->name('categoryDetails');
+Route::get('/blog/{id}', [FrontendController::class, 'blogDetails'])->name('blog.details');

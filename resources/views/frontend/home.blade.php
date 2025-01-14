@@ -151,7 +151,51 @@
                             <div class="p-b-20">
                                 {{-- Category Section --}}
                                 <div class="tab01 p-b-20">
-                                    <h1> {{ $category->name }}</h1>
+                                    <div class="tab01-head how2 how2-cl1 bocl12 m-r-10 m-r-0-sr991 d-flex justify-content-between align-items-center">
+                                        <!-- Brand tab -->
+                                        <h3 class="f1-m-2 cl12 tab01-title">
+                                            {{$category->name}}
+                                        </h3>
+        
+                                        <!-- Nav tabs -->
+                                        {{-- <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#tab1-1" role="tab">All</a>
+                                            </li>
+        
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab1-2" role="tab">Celebrity</a>
+                                            </li>
+        
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab1-3" role="tab">Movies</a>
+                                            </li>
+        
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab1-4" role="tab">Music</a>
+                                            </li>
+        
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab1-5" role="tab">Games</a>
+                                            </li>
+        
+                                            <li class="nav-item-more dropdown dis-none">
+                                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </a>
+        
+                                                <ul class="dropdown-menu">
+                                                    
+                                                </ul>
+                                            </li>
+                                        </ul> --}}
+        
+                                        <!--  -->
+                                        <a href="{{ route('categoryDetails', $category->id) }}" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                            View all
+                                            <i class="fs-12 m-l-5 fa fa-caret-right"></i>
+                                        </a>
+                                    </div>
                     
                                     <!-- Tab panes -->
                                     <div class="tab-content p-t-35">
@@ -224,7 +268,7 @@
                                                     @endforeach
                     
                                                     <div>
-                                                        <a href="{{ route('category.posts', $category->id) }}" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                                        <a href="{{ route('categoryDetails', $category->id) }}" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
                                                             View all
                                                             <i class="fs-12 m-l-5 fa fa-caret-right"></i>
                                                         </a>

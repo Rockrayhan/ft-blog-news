@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->boolean('feature_in_home')->default(false)->after('name');
+            if (!Schema::hasColumn('categories', 'feature_in_home')) {
+                $table->boolean('feature_in_home')->default(false)->after('name');
+            }
         });
     }
 
@@ -22,7 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('feature_in_home');
+            if (Schema::hasColumn('categories', 'feature_in_home')) {
+                $table->dropColumn('feature_in_home');
+            }
         });
     }
 };

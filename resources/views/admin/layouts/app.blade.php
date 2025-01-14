@@ -207,7 +207,7 @@
 
 <script>
     tinymce.init({
-        selector: '#description',
+        selector: '#content',
         plugins: 'code lists',
         toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
         height: 300

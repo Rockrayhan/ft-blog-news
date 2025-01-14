@@ -10,7 +10,6 @@
     <h2>Edit Blog</h2>
     <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $blog->title) }}" required>

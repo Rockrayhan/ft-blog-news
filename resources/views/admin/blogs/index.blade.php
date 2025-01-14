@@ -1,12 +1,8 @@
-
-
 @extends('admin.layouts.app')
-@section('title', 'All Blogs')
+@section('title', 'Manage Blogs')
 @section('content')
 
 <div class="container">
-
-
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -21,15 +17,33 @@
         </div>
     @endif
 
+    <h2>Manage Blogs</h2>
 
+    <!-- Category Filter -->
+    <form method="GET" action="{{ route('admin.blogs.index') }}" class="mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <select name="category" class="form-select" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </form>
 
     <a href="{{ route('blogs.create') }}" class="btn btn-primary mb-3">Add Blog</a>
+
+    <!-- Blogs Table -->
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Title</th>
                 <th>Image</th>
+                <th>Title</th>
                 <th>Category</th>
                 <th>Author</th>
                 <th>Tags</th>
@@ -37,11 +51,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($blogs as $blog)
+            @forelse ($blogs as $blog)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><img src="{{ asset('uploads/' . $blog->image) }}" alt="Blog Image" height="100" width="100">
-                    </td>
+                    <td><img src="{{ asset('uploads/' . $blog->image) }}" alt="Blog Image" height="100" width="100"></td>
                     <td>{{ $blog->title }}</td>
                     <td>{{ $blog->category->name ?? 'No Category' }}</td>
                     <td>{{ $blog->author }}</td>
@@ -56,7 +69,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="7" class="text-center">No blogs found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
